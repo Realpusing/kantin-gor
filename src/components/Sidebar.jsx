@@ -1,3 +1,4 @@
+// src/components/Sidebar.jsx
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import {
@@ -23,11 +24,11 @@ export default function Sidebar({ isOpen, onClose }) {
 
   const allMenus = [
     { path: '/', icon: IoHomeOutline, label: 'Dashboard', show: true },
-    { path: '/products', icon: IoFastFoodOutline, label: 'Kelola Produk', show: isAdmin },
+    { path: '/products', icon: IoFastFoodOutline, label: 'Master Produk', show: isAdmin },
     { path: '/stock-in', icon: IoCubeOutline, label: 'Input Stok', show: true },
     { path: '/sales', icon: IoCartOutline, label: 'Input Penjualan', show: true },
-    { path: '/stock-check', icon: IoStatsChartOutline, label: 'Cek Stok', show: true },
-    { path: '/sales-report', icon: IoReceiptOutline, label: 'Laporan Penjualan', show: true },
+    { path: '/stock-check', icon: IoStatsChartOutline, label: 'Cek Stok', show: isAdmin },
+    { path: '/sales-report', icon: IoReceiptOutline, label: 'Laporan Penjualan', show: isAdmin },
     { path: '/comparison', icon: IoGitCompareOutline, label: 'Perbandingan', show: isAdmin },
   ]
 
@@ -47,7 +48,7 @@ export default function Sidebar({ isOpen, onClose }) {
         transform transition-transform duration-300 
         ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:static lg:z-auto flex flex-col`}
       >
-        {/* Brand Header */}
+        {/* Brand */}
         <div className="p-5 border-b border-gray-100">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center text-xl shadow-lg shadow-emerald-200">
@@ -60,7 +61,7 @@ export default function Sidebar({ isOpen, onClose }) {
           </div>
         </div>
 
-        {/* User Card */}
+        {/* User */}
         <div className="p-3 mx-3 mt-3 bg-gray-50 rounded-xl">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-gradient-to-br from-gray-600 to-gray-700 rounded-lg flex items-center justify-center">
@@ -83,7 +84,7 @@ export default function Sidebar({ isOpen, onClose }) {
           </div>
         </div>
 
-        {/* Navigation Menu */}
+        {/* Nav */}
         <nav className="flex-1 p-3 overflow-y-auto">
           <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 px-3">
             Menu
@@ -111,7 +112,7 @@ export default function Sidebar({ isOpen, onClose }) {
           </ul>
         </nav>
 
-        {/* Logout Button */}
+        {/* Logout */}
         <div className="p-3 border-t border-gray-100">
           <button
             onClick={handleLogout}

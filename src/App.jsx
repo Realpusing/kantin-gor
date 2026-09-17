@@ -1,3 +1,4 @@
+// src/App.jsx
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import { AuthProvider, useAuth } from './context/AuthContext'
@@ -19,14 +20,51 @@ function AppRoutes() {
     <Routes>
       <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
 
-      <Route element={<ProtectedRoute><Layout /></ProtectedRoute>}>
+      <Route
+        element={
+          <ProtectedRoute>
+            <Layout />
+          </ProtectedRoute>
+        }
+      >
+        {/* Pegawai & Admin */}
         <Route path="/" element={<Dashboard />} />
         <Route path="/stock-in" element={<StockIn />} />
         <Route path="/sales" element={<Sales />} />
-        <Route path="/stock-check" element={<StockCheck />} />
-        <Route path="/sales-report" element={<SalesReport />} />
-        <Route path="/products" element={<ProtectedRoute adminOnly><Products /></ProtectedRoute>} />
-        <Route path="/comparison" element={<ProtectedRoute adminOnly><Comparison /></ProtectedRoute>} />
+
+        {/* Admin Only */}
+        <Route
+          path="/products"
+          element={
+            <ProtectedRoute adminOnly>
+              <Products />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/stock-check"
+          element={
+            <ProtectedRoute adminOnly>
+              <StockCheck />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/sales-report"
+          element={
+            <ProtectedRoute adminOnly>
+              <SalesReport />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/comparison"
+          element={
+            <ProtectedRoute adminOnly>
+              <Comparison />
+            </ProtectedRoute>
+          }
+        />
       </Route>
 
       <Route path="*" element={<Navigate to="/" />} />
@@ -38,10 +76,17 @@ export default function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <Toaster position="top-right" toastOptions={{
-          duration: 3000,
-          style: { borderRadius: '12px', padding: '12px 16px', fontSize: '14px' }
-        }} />
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            duration: 3000,
+            style: {
+              borderRadius: '12px',
+              padding: '12px 16px',
+              fontSize: '14px',
+            },
+          }}
+        />
         <AppRoutes />
       </AuthProvider>
     </BrowserRouter>

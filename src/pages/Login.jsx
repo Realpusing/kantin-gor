@@ -75,13 +75,6 @@ export default function Login() {
             </button>
           </form>
 
-          <div className="mt-5 p-3.5 bg-gray-50 rounded-xl">
-            <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-2">Demo Login</p>
-            <div className="space-y-1 text-xs text-gray-500">
-              <p><span className="font-semibold text-purple-600">Admin:</span> admin@kantin.com / admin123</p>
-              <p><span className="font-semibold text-blue-600">Pegawai:</span> pegawai@kantin.com / pegawai123</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
